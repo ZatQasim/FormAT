@@ -163,10 +163,9 @@ export async function registerRoutes(
 
   app.get("/api/history/search/all", async (req, res) => {
     try {
-      const history = await db.select().from(searchHistory).orderBy(desc(searchHistory.createdAt));
-      res.json({ history });
+      // Disabled for privacy - history must be accessed via user tag
+      res.status(403).json({ error: "Direct access to all history is disabled for privacy." });
     } catch (error) {
-      console.error("Fetch all history error:", error);
       res.status(500).json({ error: "Failed to fetch history" });
     }
   });

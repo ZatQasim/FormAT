@@ -18,9 +18,12 @@ export default function SearchHistoryPage() {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   const fetchHistory = () => {
-    const url = user.username 
-      ? `/api/history/search/${encodeURIComponent(user.username)}`
-      : '/api/history/search/all';
+    if (!user.username) {
+      setSearchHistory([]);
+      return;
+    }
+
+    const url = `/api/history/search/${encodeURIComponent(user.username)}`;
 
     fetch(url)
       .then(res => res.json())
