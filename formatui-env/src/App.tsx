@@ -1,4 +1,3 @@
-
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -15,7 +14,8 @@ import SearchHistoryPage from "./pages/SearchHistory";
 import ProPage from "./pages/Pro";
 import SecurityPage from "./pages/Security";
 import SharedReportPage from "./pages/SharedReport";
-import { Zap, Lock as LockIcon, ShieldAlert } from "lucide-react";
+import { FormatWiki } from "./pages/Wiki"; 
+import { Zap, Lock as LockIcon, ShieldAlert, HelpCircle } from "lucide-react";
 
 const ExperimentsPage = () => {
   const [isPro, setIsPro] = useState<boolean | null>(null);
@@ -37,10 +37,22 @@ const ExperimentsPage = () => {
   if (!isPro) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh] space-y-6 text-center">
-        <LockIcon size={48} className="text-muted-foreground opacity-20" />
+        {/* Lock + ? */}
+        <div className="flex items-center gap-2">
+          <LockIcon size={48} className="text-muted-foreground opacity-20" />
+          <HelpCircle size={48} className="text-muted-foreground opacity-20" />
+        </div>
+
         <h2 className="text-2xl font-heading font-bold">Pro Restricted</h2>
-        <p className="text-muted-foreground max-w-xs">Experiments are exclusively available for Pro members.</p>
-        <a href="/pro" className="text-primary font-medium hover:underline">Upgrade to Pro</a>
+        <p className="text-muted-foreground max-w-xs">
+          Experiments are exclusively available for Pro members.
+        </p>
+        <a
+          href="/pro"
+          className="text-primary font-medium hover:underline"
+        >
+          Upgrade to Pro
+        </a>
       </div>
     );
   }
@@ -50,17 +62,26 @@ const ExperimentsPage = () => {
       <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 animate-pulse">
         <Zap size={48} className="text-primary" />
       </div>
+
       <div className="space-y-2">
-        <h2 className="text-4xl font-heading font-bold gradient-text">Early Access Labs</h2>
+        <h2 className="text-4xl font-heading font-bold gradient-text">
+          Early Access Labs
+        </h2>
         <p className="text-muted-foreground text-lg italic max-w-md mx-auto">
           Testing ground for next-generation neural interfaces and experimental minimalist aesthetics.
         </p>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl w-full">
         {['Neural Layouts', 'Generative Typography', 'Ambient UI', 'Zero-Latency Search'].map((lab) => (
-          <div key={lab} className="glass-panel p-6 rounded-2xl border border-white/5 flex items-center justify-between group cursor-pointer hover:border-primary/30 transition-all">
+          <div
+            key={lab}
+            className="glass-panel p-6 rounded-2xl border border-white/5 flex items-center justify-between group cursor-pointer hover:border-primary/30 transition-all"
+          >
             <span className="font-medium">{lab}</span>
-            <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-1 rounded">ACTIVE</div>
+            <div className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-1 rounded">
+              ACTIVE
+            </div>
           </div>
         ))}
       </div>
@@ -81,6 +102,7 @@ function Router() {
         <Route path="/experiments" component={ExperimentsPage} />
         <Route path="/security" component={SecurityPage} />
         <Route path="/security/report/:id" component={SharedReportPage} />
+        <Route path="/wiki" component={FormatWiki} />
         <Route component={NotFound} />
       </Switch>
     </Shell>

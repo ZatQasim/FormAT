@@ -6,6 +6,7 @@ import { type Server } from "http";
 import { startDiscordBot } from "./bot";
 import { selfTrainingAI } from "./bot/self-training-ai";
 import { performWebSearch } from "./bot/search-engine";
+  
 import Stripe from "stripe";
 import bodyParser from "body-parser";
 

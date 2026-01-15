@@ -2,6 +2,7 @@ import { Client, GatewayIntentBits, Events, REST, Routes, SlashCommandBuilder, E
 import { performWebSearch } from './search-engine';
 import { selfTrainingAI, startBackgroundTraining } from './self-training-ai';
 import { translationEngine } from './translation-engine';
+import { FormatWiki } from '../../formatui-env/src/pages/Wiki';
 import { storage } from '../storage';
 import { log } from '../index';
 
