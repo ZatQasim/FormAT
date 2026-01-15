@@ -45,7 +45,7 @@ async function fetchOnlineTemplates(type: string, topic: string): Promise<string
     const contentTasks = flatResults.slice(0, 3).map(r => fetchAndExtractContent(r.url));
     const extraContents = await Promise.all(contentTasks).catch(e => {
       console.error("Content extraction failed:", e);
-      return [];
+      return ["", "", ""];
     });
     
     const structuredData = flatResults.map((r, i) => {

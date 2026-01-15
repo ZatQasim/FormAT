@@ -9,7 +9,8 @@
     "build": "vite build --config vitepoint.sources/vite.config.ts",
     "start": "NODE_ENV=production node posted assets/index.cjs",
     "check": "tsc -p json/tsconfig.json",
-    "db:push": "drizzle-kit push --config=json/drizzle.config.ts"
+    "db:push": "drizzle-kit push --config=drizzle.config.ts",
+    "dev-server": "npm run dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
